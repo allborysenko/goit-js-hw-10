@@ -8,8 +8,8 @@ const DEBOUNCE_DELAY = 300;
 
 const refs = {
     input: document.getElementById('search-box'),
-    countryList: document.querySelector('country-list'),
-    countryInfo: document.querySelector('country-info'),
+    countryList: document.querySelector('.country-list'),
+    countryInfo: document.querySelector('.country-info'),
 };
 
 
@@ -17,9 +17,10 @@ refs.input.addEventListener("input", debounce(onInput, DEBOUNCE_DELAY));
 
 function onInput(event){
     event.preventDefault();
+  
 
     const inputValue = refs.input.value.trim();
-
+    clear();
     if (inputValue != "") {
         fetchCountries(inputValue).then(data => {
             if (data.length > 10) {
@@ -38,22 +39,22 @@ function onInput(event){
 }
 
 function creteMarkupList(countries) {
-    const list = countries
+    const markup = countries
         .map(country => {
             return `<li>
-        <img src="${country.flags.svg}">
+        <img src="${country.flags.svg}" alt="Flag of ${country.name.official}" width="60" height="40">
         <p>${country.name.official}</p>
                 </li>`;
         }).join('');
     
-    refs.countryList.innerHTML = list;
+    refs.countryList.innerHTML = markup;
 }
 
 function creteCountryCard(countries) {
-    const list = countries
+    const markup = countries
         .map(country => {
             return `<li>
-        <img src="${country.flags.svg}">
+        <img src="${country.flags.svg}" alt="Flag of ${country.name.official}" width="60" height="40">
         <p>${country.name.official}</p>
         <p><b>Capital</b>: ${country.capital}</p>
             <p><b>Population</b>: ${country.population}</p>
@@ -61,7 +62,7 @@ function creteCountryCard(countries) {
                 </li>`;
         }).join('');
     
-    refs.countryList.innerHTML = list;
+    refs.countryList.innerHTML = markup;
 }
 
 function clear() {
