@@ -12,7 +12,6 @@ const refs = {
     countryInfo: document.querySelector('.country-info'),
 };
 
-
 refs.input.addEventListener("input", debounce(onInput, DEBOUNCE_DELAY));
 
 function onInput(event){
