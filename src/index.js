@@ -28,7 +28,7 @@ function onInput(event){
           );
             } else if (data.length === 0) {
                 Notiflix.Notify.failure('Oops, there is no country with that name');
-            } else if (data.length === 2 && data.length <= 10) {
+            } else if (data.length > 2 && data.length <= 10) {
                 creteMarkupList(data);
             } else if (data.length === 1) {
                 creteCountryCard(data);
@@ -56,8 +56,8 @@ function creteCountryCard(countries) {
         <img src="${country.flags.svg}" alt="Flag of ${country.name.official}" width="60" height="40">
         <p>${country.name.official}</p>
         <p><b>Capital</b>: ${country.capital}</p>
-            <p><b>Population</b>: ${country.population}</p>
-            <p><b>Languages</b>: ${Object.values(country.languages)} </p>
+        <p><b>Population</b>: ${country.population}</p>
+        <p><b>Languages</b>: ${Object.values(country.languages)} </p>
                 </li>`;
         }).join('');
     
